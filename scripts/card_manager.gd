@@ -68,6 +68,19 @@ func highlight_card(card, hovered):
 		card.z_index = 1
 	
 	
+func get_card_with_highest_z_index(cards):
+	# assume first card has highest z index
+	var highest_z_card = cards[0].collider.get_parent()
+	var highest_z_index = highest_z_card.z_index
+	# loop through rads to get highest index
+	for i in range(1, cards.size()):
+		var current_card = cards[i].collider.get_parent()
+		if current_card.z_index > highest_z_index:
+			highest_z_card = current_card
+			highest_z_index = current_card.z_index
+	return highest_z_card
+
+
 func castcheck_for_card():
 	# taken from tutorial - apparently Godot's recommendation
 	var space_state = get_world_2d().direct_space_state
@@ -77,5 +90,6 @@ func castcheck_for_card():
 	parameters.collision_mask = COLLISION_MASK_CARD
 	var result = space_state.intersect_point(parameters)
 	if result.size() > 0:
-		return result[0].collider.get_parent()
+		#return result[0].collider.get_parent()
+		return get_card_with_highest_z_index(result)
 	return null
