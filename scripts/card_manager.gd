@@ -32,6 +32,19 @@ func _process(_delta: float) -> void:
 			clamp(mouse_pos.y, 0, screen_size.y))
 
 
+func connect_card_signals(card):
+	card.connect("hovered", on_hovered_over_card)
+	card.connect("hovered_off", on_hovered_off_card)
+	
+	
+func on_hovered_over_card(card):
+	print("hovered")
+
+
+func on_hovered_off_card(card):
+	print("hovered off")
+	
+	
 func castcheck_for_card():
 	# taken from tutorial - apparently Godot's recommendation
 	var space_state = get_world_2d().direct_space_state
