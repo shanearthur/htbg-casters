@@ -55,14 +55,14 @@ func on_hovered_over_card(card):
 
 
 func on_hovered_off_card(card):
-	#is_hovering_on_card = false
-	highlight_card(card, false)
-	# check if hovered off one card straight onto another
-	var new_card_hovered = castcheck_for_card()
-	if new_card_hovered:
-		highlight_card(new_card_hovered, true)
-	else:
-		is_hovering_on_card = false
+	if !dragged_card:
+		highlight_card(card, false)
+		# check if hovered off one card straight onto another
+		var new_card_hovered = castcheck_for_card()
+		if new_card_hovered:
+			highlight_card(new_card_hovered, true)
+		else:
+			is_hovering_on_card = false
 	
 	
 func highlight_card(card, hovered):
