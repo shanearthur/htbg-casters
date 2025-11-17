@@ -38,11 +38,24 @@ func connect_card_signals(card):
 	
 	
 func on_hovered_over_card(card):
-	print("hovered")
+	highlight_card(card, true)
 
 
 func on_hovered_off_card(card):
-	print("hovered off")
+	highlight_card(card, false)
+	
+	
+func highlight_card(card, hovered):
+	if hovered:
+		# make a bit bigger
+		card.scale = Vector2(1.05, 1.05)
+		# bring to front
+		card.z_index = 2
+	else:
+		# return to original size
+		card.scale = Vector2(1, 1)
+		# return to original depth
+		card.z_index = 1
 	
 	
 func castcheck_for_card():
