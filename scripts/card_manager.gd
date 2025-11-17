@@ -20,9 +20,19 @@ func _input(event):
 			# get the card being clicked and assign it as the dragged card
 			var card = castcheck_for_card()
 			if card:
-				dragged_card = card
+				start_drag(card)
 		else:
-			dragged_card = null 
+			stop_drag()
+
+
+func start_drag(card):
+	dragged_card = card
+	card.scale = Vector2(1, 1)
+
+
+func stop_drag():
+	dragged_card.scale = Vector2(1.05, 1.05)
+	dragged_card = null
 
 
 func _process(_delta: float) -> void:
