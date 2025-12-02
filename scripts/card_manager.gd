@@ -22,7 +22,8 @@ func _input(event):
 			if card:
 				start_drag(card)
 		else:
-			stop_drag()
+			if dragged_card:
+				stop_drag()
 
 
 func start_drag(card):
